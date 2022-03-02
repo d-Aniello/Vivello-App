@@ -16,9 +16,11 @@ class Field(models.Model):
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
 
 
 class Machine(models.Model):
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
+
+
+class VehicleType(models.Model):
+    name = models.CharField(max_length=50)
