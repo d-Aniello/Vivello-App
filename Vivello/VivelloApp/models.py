@@ -13,3 +13,7 @@ class Field(models.Model):
     area = models.IntegerField()
     location = models.CharField(max_length=100)
 
+
+class Vehicle(models.Model):
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
