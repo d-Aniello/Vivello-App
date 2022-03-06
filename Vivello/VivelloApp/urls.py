@@ -33,4 +33,7 @@ urlpatterns = [
     path('vehicles/', views.VehiclesView.as_view(), name='vehicles'),
     path('vehicle/<int:pk>/', views.VehicleDetailView.as_view(), name='vehicle_detail_view'),
     path('vehicle/delete/<int:pk>/', views.VehicleDeleteView.as_view(), name='vehicle_delete_view'),
+    path('add_machine_type/', views.CreateMachineTypeView.as_view(), name='add_machine_type'),
+    path('machine_types/', views.MachineTypesView.as_view(), name='machine_types'),
+    path('machine_type/delete/<int:pk>/', views.MachineTypeDeleteView.as_view(), name='machine_type_delete_view'),
 ]

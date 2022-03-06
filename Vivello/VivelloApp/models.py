@@ -67,6 +67,9 @@ class MachineType(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    def get_delete_url(self):
+        return reverse('machine_type_delete_view', args=(self.pk, ))
+
 
 class Machine(models.Model):
     name = models.CharField(max_length=50)
