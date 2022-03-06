@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from VivelloApp import views
 
@@ -43,4 +42,5 @@ urlpatterns = [
     path('add_crop/', views.CreateCropView.as_view(), name='add_crop'),
     path('crops/', views.CropsView.as_view(), name='crops'),
     path('crop/delete/<int:pk>/', views.CropDeleteView.as_view(), name='crop_delete_view'),
+
 ]
