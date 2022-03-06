@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 
 
 class Farm(models.Model):
@@ -9,6 +10,15 @@ class Farm(models.Model):
     vehicle = models.ManyToManyField('Vehicle', blank=True)
     machine = models.ManyToManyField('Machine', blank=True)
 
+    def __str__(self):
+        return f"{self.name}, {self.address}"
+
+    def get_absolute_url(self):
+        return reverse('farm_detail_view', args=(self.pk, ))
+
+    def get_delete_url(self):
+        return reverse('farm_delete_view', args=(self.pk, ))
+
 
 class Field(models.Model):
     name = models.CharField(max_length=50)
@@ -16,6 +26,15 @@ class Field(models.Model):
     location = models.CharField(max_length=100)
     farm = models.ForeignKey(Farm, on_delete=models.CASCADE)
     crop = models.ManyToManyField('Crop', blank=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.location}"
+
+    def get_absolute_url(self):
+        return reverse('field_detail_view', args=(self.pk, ))
+
+    def get_delete_url(self):
+        return reverse('field_delete_view', args=(self.pk, ))
 
 
 class VehicleType(models.Model):

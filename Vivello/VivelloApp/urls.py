@@ -21,4 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('add_farm/', views.CreateFarmView.as_view(), name='add_farm'),
     path('farms/', views.FarmsView.as_view(), name='farms'),
+    path('farm/<int:pk>/', views.FarmDetailView.as_view(), name='farm_detail_view'),
+    path('farm/delete/<int:pk>/', views.FarmDeleteView.as_view(), name='farm_delete_view'),
+    path('add_field/', views.CreateFieldView.as_view(), name='add_field'),
+    path('fields/', views.FieldsView.as_view(), name='fields'),
+    path('field/<int:pk>/', views.FieldDetailView.as_view(), name='field_detail_view'),
+    path('field/delete/<int:pk>/', views.FieldDeleteView.as_view(), name='field_delete_view'),
 ]

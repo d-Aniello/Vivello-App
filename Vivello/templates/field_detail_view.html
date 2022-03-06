@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>{{ object.pk }}</p>
+    <p>{{ object.name }}</p>
+    <p>{{ object.area }}</p>
+    <p>{{ object.location }}</p>
+    <p>{{ object.farm }}</p>
+    <p>Uprawy:
+        <ul>
+            {% for item in object.crop.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}
