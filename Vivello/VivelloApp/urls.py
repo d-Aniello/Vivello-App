@@ -36,4 +36,8 @@ urlpatterns = [
     path('add_machine_type/', views.CreateMachineTypeView.as_view(), name='add_machine_type'),
     path('machine_types/', views.MachineTypesView.as_view(), name='machine_types'),
     path('machine_type/delete/<int:pk>/', views.MachineTypeDeleteView.as_view(), name='machine_type_delete_view'),
+    path('add_machine/', views.CreateMachineView.as_view(), name='add_machine'),
+    path('machines/', views.MachinesView.as_view(), name='machines'),
+    path('machine/<int:pk>/', views.MachineDetailView.as_view(), name='machine_detail_view'),
+    path('machine/delete/<int:pk>/', views.MachineDeleteView.as_view(), name='machine_delete_view'),
 ]

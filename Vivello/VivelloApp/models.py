@@ -75,6 +75,15 @@ class Machine(models.Model):
     name = models.CharField(max_length=50)
     machine_type = models.ForeignKey(MachineType, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}, {self.machine_type}"
+
+    def get_absolute_url(self):
+        return reverse(',machine_detail_view', args=(self.pk, ))
+
+    def get_delete_url(self):
+        return reverse('machine_delete_view', args=(self.pk, ))
+
 
 class Crop(models.Model):
     name = models.CharField(max_length=50)
