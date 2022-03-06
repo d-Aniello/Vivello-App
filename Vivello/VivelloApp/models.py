@@ -14,13 +14,18 @@ class Field(models.Model):
     location = models.CharField(max_length=100)
 
 
+class VehicleType(models.Model):
+    name = models.CharField(max_length=50)
+
+
 class Vehicle(models.Model):
+    name = models.CharField(max_length=50)
+
+
+class MachineType(models.Model):
     name = models.CharField(max_length=50)
 
 
 class Machine(models.Model):
     name = models.CharField(max_length=50)
 
-
-class VehicleType(models.Model):
-    name = models.CharField(max_length=50)
