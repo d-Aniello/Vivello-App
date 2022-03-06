@@ -18,7 +18,6 @@ from django.urls import path
 from VivelloApp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('add_farm/', views.CreateFarmView.as_view(), name='add_farm'),
     path('farms/', views.FarmsView.as_view(), name='farms'),
     path('farm/<int:pk>/', views.FarmDetailView.as_view(), name='farm_detail_view'),
@@ -30,4 +29,8 @@ urlpatterns = [
     path('add_vehicle_type/', views.CreateVehicleTypeView.as_view(), name='add_vehicle_type'),
     path('vehicle_types/', views.VehicleTypesView.as_view(), name='vehicle_types'),
     path('vehicle_type/delete/<int:pk>/', views.VehicleTypeDeleteView.as_view(), name='vehicle_type_delete_view'),
+    path('add_vehicle/', views.CreateVehicleView.as_view(), name='add_vehicle'),
+    path('vehicles/', views.VehiclesView.as_view(), name='vehicles'),
+    path('vehicle/<int:pk>/', views.VehicleDetailView.as_view(), name='vehicle_detail_view'),
+    path('vehicle/delete/<int:pk>/', views.VehicleDeleteView.as_view(), name='vehicle_delete_view'),
 ]

@@ -51,6 +51,15 @@ class Vehicle(models.Model):
     name = models.CharField(max_length=50)
     vehicle_type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}, {self.vehicle_type}"
+
+    def get_absolute_url(self):
+        return reverse('vehicle_detail_view', args=(self.pk, ))
+
+    def get_delete_url(self):
+        return reverse('vehicle_delete_view', args=(self.pk, ))
+
 
 class MachineType(models.Model):
     name = models.CharField(max_length=50)
