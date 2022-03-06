@@ -29,3 +29,7 @@ class MachineType(models.Model):
 class Machine(models.Model):
     name = models.CharField(max_length=50)
 
+
+class Crop(models.Model):
+    name = models.CharField(max_length=50)
+    variety = models.CharField(max_length=50)
