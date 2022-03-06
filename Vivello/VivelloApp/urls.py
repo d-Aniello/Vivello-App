@@ -40,4 +40,7 @@ urlpatterns = [
     path('machines/', views.MachinesView.as_view(), name='machines'),
     path('machine/<int:pk>/', views.MachineDetailView.as_view(), name='machine_detail_view'),
     path('machine/delete/<int:pk>/', views.MachineDeleteView.as_view(), name='machine_delete_view'),
+    path('add_crop/', views.CreateCropView.as_view(), name='add_crop'),
+    path('crops/', views.CropsView.as_view(), name='crops'),
+    path('crop/delete/<int:pk>/', views.CropDeleteView.as_view(), name='crop_delete_view'),
 ]

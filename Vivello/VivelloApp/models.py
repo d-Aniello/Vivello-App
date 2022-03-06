@@ -88,3 +88,9 @@ class Machine(models.Model):
 class Crop(models.Model):
     name = models.CharField(max_length=50)
     variety = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name}, {self.variety}"
+
+    def get_delete_url(self):
+        return reverse('crop_delete_view', args=(self.pk, ))

@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, DeleteView
 
-from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine
+from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine, Crop
 
 
 class Index(View):
@@ -145,3 +145,22 @@ class MachineDeleteView(DeleteView):
     model = Machine
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('machines')
+
+
+class CreateCropView(CreateView):
+    model = Crop
+    fields = '__all__'
+    template_name = 'form.html'
+    success_url = reverse_lazy('crops')
+
+
+class CropsView(View):
+    def get(self, request):
+        crops = Crop.objects.all()
+        return render(request, 'crops.html', {'crops': crops})
+
+
+class CropDeleteView(DeleteView):
+    model = Crop
+    template_name = 'delete_confirm.html'
+    success_url = reverse_lazy('crops')
