@@ -20,4 +20,5 @@ from VivelloApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('add_farm/', views.CreateFarmView.as_view(), name='add_farm'),
+    path('farms/', views.FarmsView.as_view(), name='farms'),
 ]

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        Czy chcesz usunąć tę pozycję?
+        <input type="submit" value="Tak">
+    </form>
+{% endblock %}

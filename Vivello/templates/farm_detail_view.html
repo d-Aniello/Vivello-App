@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>{{ object.pk }}</p>
+    <p>{{ object.name }}</p>
+    <p>{{ object.address }}</p>
+    <p>Pojazdy:
+        <ul>
+            {% for item in object.vehicle.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>Maszyny:
+        <ul>
+            {% for item in object.machine.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}

@@ -15,6 +15,7 @@
 <div class="topnav">
     <a class="active" href="{% url 'index' %}">Home</a>
     <a href="{% url 'add_farm' %}">Dodaj gospodarstwo</a>
+    <a href="{% url 'farms' %}">Gospodarstwa</a>
 
 
     <a href="#about">About</a>
@@ -23,7 +24,7 @@
   {{ user }}
 </div>
 <div class="contener">
-    {% block slonina %}<br>
+    {% block content %}<br>
     Site under construction
     {% endblock %}
 </div>
