@@ -20,6 +20,7 @@ class VehicleType(models.Model):
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=50)
+    vehicle_type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
 
 
 class MachineType(models.Model):
@@ -28,6 +29,7 @@ class MachineType(models.Model):
 
 class Machine(models.Model):
     name = models.CharField(max_length=50)
+    machine_type = models.ForeignKey(MachineType, on_delete=models.CASCADE)
 
 
 class Crop(models.Model):
