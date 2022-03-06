@@ -14,11 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from VivelloApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Index.as_view(), name='index'),
-    path('bib_app/', include('VivelloApp.urls')),
+    path('add_farm/', views.CreateFarmView.as_view(), name='add_farm'),
 ]
