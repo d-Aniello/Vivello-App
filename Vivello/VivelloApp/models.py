@@ -6,6 +6,8 @@ from django.db import models
 class Farm(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
+    vehicle = models.ManyToManyField('Vehicle', blank=True)
+    machine = models.ManyToManyField('Machine', blank=True)
 
 
 class Field(models.Model):
