@@ -40,6 +40,12 @@ class Field(models.Model):
 class VehicleType(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.name}"
+
+    def get_delete_url(self):
+        return reverse('vehicle_type_delete_view', args=(self.pk, ))
+
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=50)
@@ -48,6 +54,9 @@ class Vehicle(models.Model):
 
 class MachineType(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Machine(models.Model):

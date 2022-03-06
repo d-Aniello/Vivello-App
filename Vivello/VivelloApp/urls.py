@@ -27,4 +27,7 @@ urlpatterns = [
     path('fields/', views.FieldsView.as_view(), name='fields'),
     path('field/<int:pk>/', views.FieldDetailView.as_view(), name='field_detail_view'),
     path('field/delete/<int:pk>/', views.FieldDeleteView.as_view(), name='field_delete_view'),
+    path('add_vehicle_type/', views.CreateVehicleTypeView.as_view(), name='add_vehicle_type'),
+    path('vehicle_types/', views.VehicleTypesView.as_view(), name='vehicle_types'),
+    path('vehicle_type/delete/<int:pk>/', views.VehicleTypeDeleteView.as_view(), name='vehicle_type_delete_view'),
 ]
