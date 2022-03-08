@@ -8,7 +8,7 @@ from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Ma
 class Index(View):
     """Returns home page"""
     def get(self, request):
-        return render(request, 'base.html')
+        return render(request, 'index.html')
 
 
 class CreateFarmView(CreateView):
