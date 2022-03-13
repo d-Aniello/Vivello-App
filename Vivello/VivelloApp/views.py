@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -14,8 +15,10 @@ class Index(View):
 
 class CreateFarmView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new farm"""
+
+    permission_required = ['VivelloApp.add_farm']
     model = Farm
-    fields = '__all__'
+    fields = "__all__"
     template_name = 'new_farm.html'
     success_url = reverse_lazy('farms')
 
@@ -35,6 +38,8 @@ class FarmDetailView(LoginRequiredMixin, DetailView):
 
 class FarmDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen farm"""
+
+    permission_required = ['VivelloApp.delete_farm']
     model = Farm
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('farms')
@@ -42,6 +47,8 @@ class FarmDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 class CreateFieldView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new field"""
+
+    permission_required = ['VivelloApp.add_field']
     def get(self, request):
         farms = Farm.objects.all()
         return render(request, 'new_field.html', {'farms': farms})
@@ -71,6 +78,8 @@ class FieldDetailView(LoginRequiredMixin, DetailView):
 
 class FieldDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen field"""
+
+    permission_required = ['VivelloApp.delete_field']
     model = Field
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('fields')
@@ -78,6 +87,8 @@ class FieldDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 class CreateVehicleTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new vehicle type"""
+
+    permission_required = ['VivelloApp.add_vehicletype']
     model = VehicleType
     fields = '__all__'
     template_name = 'new_vehicle_type.html'
@@ -93,6 +104,8 @@ class VehicleTypesView(LoginRequiredMixin, View):
 
 class VehicleTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen vehicle type"""
+
+    permission_required = ['VivelloApp.delete_vehicletype']
     model = VehicleType
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('vehicle_types')
@@ -100,6 +113,8 @@ class VehicleTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteV
 
 class CreateVehicleView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new vehicle"""
+
+    permission_required = ['VivelloApp.add_vehicle']
     def get(self, request):
         vehicle_types = VehicleType.objects.all()
         return render(request, 'new_vehicle.html', {'vehicle_types': vehicle_types})
@@ -127,6 +142,8 @@ class VehicleDetailView(LoginRequiredMixin, DetailView):
 
 class VehicleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen vehicle"""
+
+    permission_required = ['VivelloApp.delete_vehicle']
     model = Vehicle
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('vehicles')
@@ -134,6 +151,8 @@ class VehicleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
 
 class CreateMachineTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new machine type"""
+
+    permission_required = ['VivelloApp.add_machinetype']
     model = MachineType
     fields = '__all__'
     template_name = 'new_machine_type.html'
@@ -149,6 +168,8 @@ class MachineTypesView(LoginRequiredMixin, View):
 
 class MachineTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen machine type"""
+
+    permission_required = ['VivelloApp.delete_machinetype']
     model = MachineType
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('machine_types')
@@ -156,6 +177,8 @@ class MachineTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteV
 
 class CreateMachineView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new machine"""
+
+    permission_required = ['VivelloApp.add_machine']
     def get(self, request):
         machine_types = MachineType.objects.all()
         return render(request, 'new_machine.html', {'machine_types': machine_types})
@@ -183,6 +206,8 @@ class MachineDetailView(LoginRequiredMixin, DetailView):
 
 class MachineDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen machine"""
+
+    permission_required = ['VivelloApp.delete_machine']
     model = Machine
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('machines')
@@ -190,6 +215,8 @@ class MachineDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
 
 class CreateCropView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new crop"""
+
+    permission_required = ['VivelloApp.add_crop']
     model = Crop
     fields = '__all__'
     template_name = 'new_crop.html'
@@ -205,6 +232,8 @@ class CropsView(LoginRequiredMixin, View):
 
 class CropDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen crop"""
+
+    permission_required = ['VivelloApp.delete_crop']
     model = Crop
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('crops')
@@ -212,6 +241,8 @@ class CropDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 class CreateTaskView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new task"""
+
+    permission_required = ['VivelloApp.add_task']
     model = Task
     fields = '__all__'
     template_name = 'new_task.html'
@@ -233,6 +264,8 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 class TaskDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen task"""
+
+    permission_required = ['VivelloApp.delete_task']
     model = Task
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('tasks')

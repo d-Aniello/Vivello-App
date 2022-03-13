@@ -20,6 +20,6 @@ from VivelloApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Index.as_view(), name='index'),
-    path('bib_app/', include('VivelloApp.urls')),
+    path('vivello_app/', include('VivelloApp.urls')),
     path('accounts/', include('accounts.urls')),
 ]

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Farm(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
-    """employee = models.ForeignKey(User, on_delete=models.CASCADE)"""
+    employee = models.ManyToManyField(User, blank=True)
     vehicle = models.ManyToManyField('Vehicle', blank=True)
     machine = models.ManyToManyField('Machine', blank=True)
 
@@ -100,7 +100,7 @@ class Task(models.Model):
     name = models.CharField(max_length=25)
     description = models.CharField(max_length=255)
     date = models.DateField()
-    """user = models.ForeignKey(User, on_delete=models.CASCADE)"""
+    user = models.ManyToManyField(User, blank=True)
     vehicle = models.ManyToManyField(Vehicle)
     machine = models.ManyToManyField(Machine)
     field = models.ManyToManyField(Field)
