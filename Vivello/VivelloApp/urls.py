@@ -42,5 +42,9 @@ urlpatterns = [
     path('add_crop/', views.CreateCropView.as_view(), name='add_crop'),
     path('crops/', views.CropsView.as_view(), name='crops'),
     path('crop/delete/<int:pk>/', views.CropDeleteView.as_view(), name='crop_delete_view'),
+    path('add_task/', views.CreateTaskView.as_view(), name='add_task'),
+    path('tasks/', views.TasksView.as_view(), name='tasks'),
+    path('task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail_view'),
+    path('task/delete/<int:pk>/', views.TaskDeleteView.as_view(), name='task_delete_view'),
 
 ]

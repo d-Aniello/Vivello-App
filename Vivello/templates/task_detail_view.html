@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>{{ object.pk }}</p>
+    <p>{{ object.name }}</p>
+    <p>{{ object.description }}</p>
+    <p>{{ object.date }}</p>
+    <p>Pojazd:
+        <ul>
+            {% for item in object.vehicle.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>Maszyna:
+        <ul>
+            {% for item in object.machine.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>Pole:
+        <ul>
+            {% for item in object.field.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>Uprawa:
+        <ul>
+            {% for item in object.crop.all %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}

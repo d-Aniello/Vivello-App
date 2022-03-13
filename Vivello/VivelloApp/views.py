@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, DeleteView
-from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine, Crop
+from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine, Crop, Task
 
 
 class Index(View):
@@ -187,3 +187,31 @@ class CropDeleteView(DeleteView):
     model = Crop
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('crops')
+
+
+class CreateTaskView(CreateView):
+    """Generates site with a form to create new task"""
+    model = Task
+    fields = '__all__'
+    template_name = 'form.html'
+    success_url = reverse_lazy('tasks')
+
+
+class TasksView(View):
+    """List of tasks in database"""
+    def get(self, request):
+        tasks = Task.objects.all()
+        return render(request, 'tasks.html', {'tasks': tasks})
+
+
+class TaskDetailView(DetailView):
+    """Details of the task"""
+    model = Task
+    template_name = 'task_detail_view.html'
+
+
+class TaskDeleteView(DeleteView):
+    """Deletes chosen task"""
+    model = Task
+    template_name = 'delete_confirm.html'
+    success_url = reverse_lazy('tasks')
