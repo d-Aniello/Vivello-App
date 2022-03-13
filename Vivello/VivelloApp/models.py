@@ -105,3 +105,12 @@ class Task(models.Model):
     machine = models.ManyToManyField(Machine)
     field = models.ManyToManyField(Field)
     crop = models.ManyToManyField(Crop, blank=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.description}"
+
+    def get_absolute_url(self):
+        return reverse('task_detail_view', args=(self.pk, ))
+
+    def get_delete_url(self):
+        return reverse('task_delete_view', args=(self.pk, ))

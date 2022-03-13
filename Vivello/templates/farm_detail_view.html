@@ -53,6 +53,13 @@
 
               <p>{{ object.name }}</p>
               <p>{{ object.address }}</p>
+              <p>Pracownicy:
+                <ul>
+                  {% for item in object.employee.all %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </p>
               <p>Pojazdy:
                 <ul>
                   {% for item in object.vehicle.all %}

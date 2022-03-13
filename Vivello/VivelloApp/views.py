@@ -1,30 +1,39 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, DeleteView
+from VivelloApp.forms import FarmForm, FieldForm, TaskForm
 from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine, Crop, Task
 
 
 class Index(View):
     """Returns home page"""
+
     def get(self, request):
         return render(request, 'index.html')
 
 
-class CreateFarmView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class CreateFarmView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new farm"""
 
     permission_required = ['VivelloApp.add_farm']
-    model = Farm
-    fields = "__all__"
-    template_name = 'new_farm.html'
-    success_url = reverse_lazy('farms')
+
+    def get(self, request):
+        form = FarmForm()
+        return render(request, 'new_farm.html', {'form': form})
+
+    def post(self, request):
+        form = FarmForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('farms')
+        return render(request, 'new_farm.html', {'form': form})
 
 
 class FarmsView(LoginRequiredMixin, View):
     """List of farms in database"""
+
     def get(self, request):
         farms = Farm.objects.all()
         return render(request, 'farms.html', {'farms': farms})
@@ -49,22 +58,22 @@ class CreateFieldView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new field"""
 
     permission_required = ['VivelloApp.add_field']
+
     def get(self, request):
-        farms = Farm.objects.all()
-        return render(request, 'new_field.html', {'farms': farms})
+        form = FieldForm()
+        return render(request, 'new_field.html', {'form': form})
 
     def post(self, request):
-        name = request.POST.get('name')
-        area = request.POST.get('area')
-        location = request.POST.get('location')
-        farm_id = request.POST.get('farm_id')
-        farm = Farm.objects.get(id=farm_id)
-        Field.objects.create(name=name, area=area, location=location, farm=farm)
-        return redirect('fields')
+        form = FieldForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('fields')
+        return render(request, 'new_field.html', {'form': form})
 
 
 class FieldsView(LoginRequiredMixin, View):
     """List of fields in database"""
+
     def get(self, request):
         fields = Field.objects.all()
         return render(request, 'fields.html', {'fields': fields})
@@ -97,6 +106,7 @@ class CreateVehicleTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateV
 
 class VehicleTypesView(LoginRequiredMixin, View):
     """List of vehicle types in database"""
+
     def get(self, request):
         vehicle_types = VehicleType.objects.all()
         return render(request, 'vehicle_types.html', {'vehicle_types': vehicle_types})
@@ -115,6 +125,7 @@ class CreateVehicleView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new vehicle"""
 
     permission_required = ['VivelloApp.add_vehicle']
+
     def get(self, request):
         vehicle_types = VehicleType.objects.all()
         return render(request, 'new_vehicle.html', {'vehicle_types': vehicle_types})
@@ -129,6 +140,7 @@ class CreateVehicleView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
 class VehiclesView(LoginRequiredMixin, View):
     """List of vehicles in database"""
+
     def get(self, request):
         vehicles = Vehicle.objects.all()
         return render(request, 'vehicles.html', {'vehicles': vehicles})
@@ -161,6 +173,7 @@ class CreateMachineTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateV
 
 class MachineTypesView(LoginRequiredMixin, View):
     """List of machine types in database"""
+
     def get(self, request):
         machine_types = MachineType.objects.all()
         return render(request, 'machine_types.html', {'machine_types': machine_types})
@@ -179,6 +192,7 @@ class CreateMachineView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new machine"""
 
     permission_required = ['VivelloApp.add_machine']
+
     def get(self, request):
         machine_types = MachineType.objects.all()
         return render(request, 'new_machine.html', {'machine_types': machine_types})
@@ -193,6 +207,7 @@ class CreateMachineView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
 class MachinesView(LoginRequiredMixin, View):
     """List of machines in database"""
+
     def get(self, request):
         machines = Machine.objects.all()
         return render(request, 'machines.html', {'machines': machines})
@@ -225,6 +240,7 @@ class CreateCropView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
 class CropsView(LoginRequiredMixin, View):
     """List of crops in database"""
+
     def get(self, request):
         crops = Crop.objects.all()
         return render(request, 'crops.html', {'crops': crops})
@@ -239,18 +255,26 @@ class CropDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('crops')
 
 
-class CreateTaskView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class CreateTaskView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new task"""
 
     permission_required = ['VivelloApp.add_task']
-    model = Task
-    fields = '__all__'
-    template_name = 'new_task.html'
-    success_url = reverse_lazy('tasks')
+
+    def get(self, request):
+        form = TaskForm()
+        return render(request, 'new_task.html', {'form': form})
+
+    def post(self, request):
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tasks')
+        return render(request, 'new_task.html', {'form': form})
 
 
 class TasksView(LoginRequiredMixin, View):
     """List of tasks in database"""
+
     def get(self, request):
         tasks = Task.objects.all()
         return render(request, 'tasks.html', {'tasks': tasks})
