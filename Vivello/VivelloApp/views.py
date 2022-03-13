@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, DeleteView
@@ -15,7 +15,7 @@ class CreateFarmView(CreateView):
     """Generates site with a form to create new farm"""
     model = Farm
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_farm.html'
     success_url = reverse_lazy('farms')
 
 
@@ -43,7 +43,7 @@ class CreateFieldView(CreateView):
     """Generates site with a form to create new field"""
     model = Field
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_field.html'
     success_url = reverse_lazy('fields')
 
 
@@ -71,7 +71,7 @@ class CreateVehicleTypeView(CreateView):
     """Generates site with a form to create new vehicle type"""
     model = VehicleType
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_vehicle_type.html'
     success_url = reverse_lazy('vehicle_types')
 
 
@@ -89,12 +89,18 @@ class VehicleTypeDeleteView(DeleteView):
     success_url = reverse_lazy('vehicle_types')
 
 
-class CreateVehicleView(CreateView):
+class CreateVehicleView(View):
     """Generates site with a form to create new vehicle"""
-    model = Vehicle
-    fields = '__all__'
-    template_name = 'form.html'
-    success_url = reverse_lazy('vehicles')
+    def get(self, request):
+        vehicle_types = VehicleType.objects.all()
+        return render(request, 'new_vehicle.html', {'vehicle_types': vehicle_types})
+
+    def post(self, request):
+        name = request.POST.get('name')
+        vehicle_type_id = request.POST.get('vehicle_type_id')
+        vehicle_type = VehicleType.objects.get(id=vehicle_type_id)
+        Vehicle.objects.create(name=name, vehicle_type=vehicle_type)
+        return redirect('vehicles')
 
 
 class VehiclesView(View):
@@ -121,7 +127,7 @@ class CreateMachineTypeView(CreateView):
     """Generates site with a form to create new machine type"""
     model = MachineType
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_machine_type.html'
     success_url = reverse_lazy('machine_types')
 
 
@@ -139,12 +145,18 @@ class MachineTypeDeleteView(DeleteView):
     success_url = reverse_lazy('machine_types')
 
 
-class CreateMachineView(CreateView):
+class CreateMachineView(View):
     """Generates site with a form to create new machine"""
-    model = Machine
-    fields = '__all__'
-    template_name = 'form.html'
-    success_url = reverse_lazy('machines')
+    def get(self, request):
+        machine_types = MachineType.objects.all()
+        return render(request, 'new_machine.html', {'machine_types': machine_types})
+
+    def post(self, request):
+        name = request.POST.get('name')
+        machine_type_id = request.POST.get('machine_type_id')
+        machine_type = MachineType.objects.get(id=machine_type_id)
+        Machine.objects.create(name=name, machine_type=machine_type)
+        return redirect('machines')
 
 
 class MachinesView(View):
@@ -193,7 +205,7 @@ class CreateTaskView(CreateView):
     """Generates site with a form to create new task"""
     model = Task
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_task.html'
     success_url = reverse_lazy('tasks')
 
 

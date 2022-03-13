@@ -1,10 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Farm(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
+    """user = models.OneToOneField(User, on_delete=models.CASCADE)"""
     vehicle = models.ManyToManyField('Vehicle', blank=True)
     machine = models.ManyToManyField('Machine', blank=True)
 
@@ -77,7 +79,7 @@ class Machine(models.Model):
         return f"{self.name}, {self.machine_type}"
 
     def get_absolute_url(self):
-        return reverse(',machine_detail_view', args=(self.pk, ))
+        return reverse('machine_detail_view', args=(self.pk, ))
 
     def get_delete_url(self):
         return reverse('machine_delete_view', args=(self.pk, ))
@@ -98,6 +100,7 @@ class Task(models.Model):
     name = models.CharField(max_length=25)
     description = models.CharField(max_length=255)
     date = models.DateField()
+    """user = models.OneToOneField(User, on_delete=models.CASCADE)"""
     vehicle = models.ManyToManyField(Vehicle)
     machine = models.ManyToManyField(Machine)
     field = models.ManyToManyField(Field)

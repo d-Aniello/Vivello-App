@@ -19,7 +19,7 @@
         <div class="flex flex-wrap items-center -mx-4">
           <div class="w-full px-4">
             <div class="text-center">
-              <h1 class="font-semibold text-white text-4xl">Szczegóły maszyny</h1>
+              <h1 class="font-semibold text-white text-4xl">Nowe zadanie</h1>
             </div>
           </div>
         </div>
@@ -50,9 +50,192 @@
               "
               data-wow-delay=".15s"
             >
-
-              <p>{{ object.name }}</p>
-              <p>{{ object.machine_type }}</p>
+              <div class="mb-10 text-center">
+                <a
+                  href="javascript:void(0)"
+                  class="inline-block max-w-[160px] mx-auto"
+                >
+                  <img src="{% static 'Vivello-logos_black.png' %}" alt="logo" />
+                </a>
+              </div>
+              <form method="post">
+                {% csrf_token %}
+                <div class="mb-6">
+                  <input
+                    type="text"
+                    placeholder="Nazwa zadania"
+                    name="name"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="text"
+                    placeholder="Opis zadania"
+                    name="description"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="date"
+                    placeholder="Termin zadania"
+                    name="date"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="checkbox"
+                    placeholder="Pojazd"
+                    name="vehicle"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="checkbox"
+                    placeholder="Maszyna"
+                    name="machine"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="checkbox"
+                    placeholder="Pole"
+                    name="field"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="checkbox"
+                    placeholder="Uprawa"
+                    name="crop"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-[#E9EDF4]
+                      py-3
+                      px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition
+                    "
+                  />
+                </div>
+                <div class="mb-10">
+                  <input
+                    type="submit"
+                    value="Dodaj zadanie"
+                    class="
+                      w-full
+                      rounded-md
+                      border
+                      bordder-primary
+                      py-3
+                      px-5
+                      bg-primary
+                      text-base text-white
+                      cursor-pointer
+                      hover:shadow-md
+                      transition
+                      duration-300
+                      ease-in-out
+                    "
+                  />
+                </div>
+              </form>
 
               <div>
                 <span class="absolute top-1 right-1">

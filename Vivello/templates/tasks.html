@@ -1,4 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
+
+    <!-- ====== Banner Section Start -->
+    <div
+      class="
+        relative
+        z-10
+        pt-[120px]
+        md:pt-[130px]
+        lg:pt-[160px]
+        pb-[100px]
+        bg-primary
+        overflow-hidden
+      "
+    >
+      <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+          <div class="w-full px-4">
+            <div class="text-center">
+              <h1 class="font-semibold text-white text-4xl">Lista zadań</h1>
+                <div class="hero-content text-center max-w-[780px] mx-auto wow fadeInUp" data-wow-delay=".2s">
+                    <ul class="flex flex-wrap items-center justify-center mb-10">
+                        <li>
+                            <a href="{% url 'add_task' %}" class="py-4 px-6 sm:px-10 inline-flex items-center justify-center
+                                      text-center text-dark text-base bg-white hover:text-primary hover:shadow-lg font-medium rounded-lg
+                                      transition duration-300 ease-in-out">
+                                    Dodaj zadanie
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ====== Banner Section End -->
+
     {% include 'list_view.html' with objects_list=tasks %}
+
 {% endblock %}

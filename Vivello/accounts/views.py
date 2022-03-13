@@ -42,7 +42,7 @@ class RegistrationView(View):
             user.set_password(form.cleaned_data['pass_1'])
             user.save()
             return redirect('index')
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'register.html', {'form': form})
 
 
 class UserPermissionView(View):
