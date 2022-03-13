@@ -9,7 +9,7 @@ from accounts.forms import LoginForm, RegistrationForm, UserPermissionForm
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'login.html', {'form': form})
 
     def post(self, request):
         form = LoginForm(request.POST)
@@ -33,7 +33,7 @@ class LogoutView(View):
 class RegistrationView(View):
     def get(self, request):
         form = RegistrationForm()
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'register.html', {'form': form})
 
     def post(self, request):
         form = RegistrationForm(request.POST)

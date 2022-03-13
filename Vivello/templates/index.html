@@ -28,7 +28,7 @@
       <div class="container">
         <div class="flex -mx-4 items-center justify-between relative">
           <div class="px-4 w-60 max-w-full">
-            <a href="index.html" class="navbar-logo w-full block py-5">
+            <a href="{% url 'index' %}" class="navbar-logo w-full block py-5">
               <img src="{% static 'Vivello-logos_white.png' %}" alt="logo" class="w-full header-logo"/>
             </a>
           </div>
@@ -45,7 +45,7 @@
                   lg:block lg:static lg:shadow-none">
                 <ul class="blcok lg:flex">
                   <li class="relative group">
-                    <a href="#home" class=" ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70
+                    <a href="{% url 'index' %}" class=" ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70
                         lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex
                         mx-8 lg:mr-0">
                       Home
@@ -180,6 +180,8 @@
       </div>
     </div>
     <!-- ====== Navbar Section End -->
+
+{% block content %}
 
     <!-- ====== Hero Section Start -->
     <div id="home" class="relative pt-[120px] md:pt-[130px] lg:pt-[160px] bg-primary">
@@ -3851,6 +3853,8 @@
     </section>
     <!-- ====== Contact End ====== -->
 
+{% endblock %}
+
     <!-- ====== Footer Section Start -->
     <footer
       class="bg-black pt-20 lg:pt-[120px] relative z-10 wow fadeInUp"
@@ -3865,15 +3869,11 @@
                 class="inline-block max-w-[160px] mb-6"
               >
                 <img
-                  src="assets/images/logo/logo-white.svg"
+                  src="{% static 'Vivello-logos_white.png' %}"
                   alt="logo"
                   class="max-w-full"
                 />
               </a>
-              <p class="text-base text-[#f3f4fe] mb-7">
-                We create digital experiences for brands and companies by using
-                technology.
-              </p>
               <div class="flex items-center -mx-3">
                 <a
                   href="javascript:void(0)"
@@ -3946,11 +3946,10 @@
           </div>
           <div class="w-full sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12 px-4">
             <div class="w-full mb-10">
-              <h4 class="text-white text-lg font-semibold mb-9">About Us</h4>
               <ul>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href="{% url 'index' %}"
                     class="
                       inline-block
                       text-base text-[#f3f4fe]
@@ -3973,35 +3972,7 @@
                       mb-2
                     "
                   >
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    Testimonial
+                    O nas
                   </a>
                 </li>
               </ul>
@@ -4009,11 +3980,10 @@
           </div>
           <div class="w-full sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12 px-4">
             <div class="w-full mb-10">
-              <h4 class="text-white text-lg font-semibold mb-9">Features</h4>
               <ul>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href="{% url 'farms' %}"
                     class="
                       inline-block
                       text-base text-[#f3f4fe]
@@ -4022,7 +3992,7 @@
                       mb-2
                     "
                   >
-                    How it works
+                    Gospodarstwa
                   </a>
                 </li>
                 <li>
@@ -4036,35 +4006,7 @@
                       mb-2
                     "
                   >
-                    Privacy policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    Refund policy
+                    Pracownicy
                   </a>
                 </li>
               </ul>
@@ -4072,13 +4014,10 @@
           </div>
           <div class="w-full sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12 px-4">
             <div class="w-full mb-10">
-              <h4 class="text-white text-lg font-semibold mb-9">
-                Our Products
-              </h4>
               <ul>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href="{% url 'vehicles' %}"
                     class="
                       inline-block
                       text-base text-[#f3f4fe]
@@ -4087,12 +4026,12 @@
                       mb-2
                     "
                   >
-                    LineIcons
+                    Pojazdy
                   </a>
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href="{% url 'machines' %}"
                     class="
                       inline-block
                       text-base text-[#f3f4fe]
@@ -4101,162 +4040,7 @@
                       mb-2
                     "
                   >
-                    Ecommerce HTML
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    Ayro UI
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="
-                      inline-block
-                      text-base text-[#f3f4fe]
-                      hover:text-primary
-                      leading-loose
-                      mb-2
-                    "
-                  >
-                    PlainAdmin
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="w-full md:w-2/3 lg:w-6/12 xl:w-3/12 px-4">
-            <div class="w-full mb-10">
-              <h4 class="text-white text-lg font-semibold mb-9">Partners</h4>
-              <ul class="flex flex-wrap items-center">
-                <li>
-                  <a
-                    href="https://tailgrids.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/tailgrids.svg"
-                      alt="tailgrids"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://ayroui.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/ayroui.svg"
-                      alt="ayroui"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://ecommercehtml.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/ecommerce-html.svg"
-                      alt="ecommerce-html"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://graygrids.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/graygrids.svg"
-                      alt="graygrids"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://lineicons.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/lineicons.svg"
-                      alt="lineicons"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://uideck.com"
-                    rel="nofollow noopner"
-                    target="_blank"
-                    class="
-                      block
-                      mb-6
-                      mr-5
-                      max-w-[120px]
-                      xl:max-w-[100px]
-                      2xl:max-w-[120px]
-                    "
-                  >
-                    <img
-                      src="assets/images/footer/brands/uideck.svg"
-                      alt="uideck"
-                    />
+                    Maszyny
                   </a>
                 </li>
               </ul>
@@ -4283,19 +4067,13 @@
                     href="javascript:void(0)"
                     class="text-base text-[#f3f4fe] hover:text-primary px-3"
                   >
-                    Privacy policy
+                    Polityka prywatności
                   </a>
                   <a
                     href="javascript:void(0)"
                     class="text-base text-[#f3f4fe] hover:text-primary px-3"
                   >
-                    Legal notice
-                  </a>
-                  <a
-                    href="javascript:void(0)"
-                    class="text-base text-[#f3f4fe] hover:text-primary px-3"
-                  >
-                    Terms of service
+                    Regulamin
                   </a>
                 </div>
               </div>
@@ -4305,12 +4083,12 @@
                 <p class="text-base text-[#f3f4fe]">
                   Designed and Developed by
                   <a
-                    href="https://tailgrids.com"
+                    href="javascript:void(0)"
                     rel="nofollow noopner"
                     target="_blank"
                     class="text-primary hover:underline"
                   >
-                    TailGrids and UIdeck
+                    d-Aniello
                   </a>
                 </p>
               </div>

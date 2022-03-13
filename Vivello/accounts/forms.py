@@ -4,8 +4,8 @@ from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='User')
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Hasło'}))
+    username = forms.CharField(label='Użytkownik')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Hasło')
 
 
 def pass_length_validation(value):
