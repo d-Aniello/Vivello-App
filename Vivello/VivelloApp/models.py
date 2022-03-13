@@ -92,3 +92,13 @@ class Crop(models.Model):
 
     def get_delete_url(self):
         return reverse('crop_delete_view', args=(self.pk, ))
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=25)
+    description = models.CharField(max_length=255)
+    date = models.DateField()
+    vehicle = models.ManyToManyField(Vehicle)
+    machine = models.ManyToManyField(Machine)
+    field = models.ManyToManyField(Field)
+    crop = models.ManyToManyField(Crop, blank=True)
