@@ -39,12 +39,20 @@ class FarmDeleteView(DeleteView):
     success_url = reverse_lazy('farms')
 
 
-class CreateFieldView(CreateView):
+class CreateFieldView(View):
     """Generates site with a form to create new field"""
-    model = Field
-    fields = '__all__'
-    template_name = 'new_field.html'
-    success_url = reverse_lazy('fields')
+    def get(self, request):
+        farms = Farm.objects.all()
+        return render(request, 'new_field.html', {'farms': farms})
+
+    def post(self, request):
+        name = request.POST.get('name')
+        area = request.POST.get('area')
+        location = request.POST.get('location')
+        farm_id = request.POST.get('farm_id')
+        farm = Farm.objects.get(id=farm_id)
+        Field.objects.create(name=name, area=area, location=location, farm=farm)
+        return redirect('fields')
 
 
 class FieldsView(View):
@@ -183,7 +191,7 @@ class CreateCropView(CreateView):
     """Generates site with a form to create new crop"""
     model = Crop
     fields = '__all__'
-    template_name = 'form.html'
+    template_name = 'new_crop.html'
     success_url = reverse_lazy('crops')
 
 

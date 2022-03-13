@@ -57,3 +57,9 @@ class UserPermissionView(View):
         if form.is_valid():
             form.save()
         return render(request, 'form.html', {'form': form})
+
+
+class Users(View):
+    def get(self, request):
+        users = User.objects.all()
+        return render(request, 'users.html', {'users': users})
