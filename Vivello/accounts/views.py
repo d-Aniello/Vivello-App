@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -45,21 +46,21 @@ class RegistrationView(View):
         return render(request, 'register.html', {'form': form})
 
 
-class UserPermissionView(View):
+class UserPermissionView(LoginRequiredMixin, View):
     def get(self, request, id):
         user = User.objects.get(pk=id)
         form = UserPermissionForm(instance=user)
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'perm_form.html', {'form': form})
 
     def post(self, request, id):
         user = User.objects.get(pk=id)
         form = UserPermissionForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'perm_form.html', {'form': form})
 
 
-class Users(View):
+class Users(LoginRequiredMixin, View):
     def get(self, request):
         users = User.objects.all()
         return render(request, 'users.html', {'users': users})

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -11,7 +12,7 @@ class Index(View):
         return render(request, 'index.html')
 
 
-class CreateFarmView(CreateView):
+class CreateFarmView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new farm"""
     model = Farm
     fields = '__all__'
@@ -19,27 +20,27 @@ class CreateFarmView(CreateView):
     success_url = reverse_lazy('farms')
 
 
-class FarmsView(View):
+class FarmsView(LoginRequiredMixin, View):
     """List of farms in database"""
     def get(self, request):
         farms = Farm.objects.all()
         return render(request, 'farms.html', {'farms': farms})
 
 
-class FarmDetailView(DetailView):
+class FarmDetailView(LoginRequiredMixin, DetailView):
     """Details of the farm"""
     model = Farm
     template_name = 'farm_detail_view.html'
 
 
-class FarmDeleteView(DeleteView):
+class FarmDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen farm"""
     model = Farm
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('farms')
 
 
-class CreateFieldView(View):
+class CreateFieldView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new field"""
     def get(self, request):
         farms = Farm.objects.all()
@@ -55,27 +56,27 @@ class CreateFieldView(View):
         return redirect('fields')
 
 
-class FieldsView(View):
+class FieldsView(LoginRequiredMixin, View):
     """List of fields in database"""
     def get(self, request):
         fields = Field.objects.all()
         return render(request, 'fields.html', {'fields': fields})
 
 
-class FieldDetailView(DetailView):
+class FieldDetailView(LoginRequiredMixin, DetailView):
     """Details of the field"""
     model = Field
     template_name = 'field_detail_view.html'
 
 
-class FieldDeleteView(DeleteView):
+class FieldDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen field"""
     model = Field
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('fields')
 
 
-class CreateVehicleTypeView(CreateView):
+class CreateVehicleTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new vehicle type"""
     model = VehicleType
     fields = '__all__'
@@ -83,21 +84,21 @@ class CreateVehicleTypeView(CreateView):
     success_url = reverse_lazy('vehicle_types')
 
 
-class VehicleTypesView(View):
+class VehicleTypesView(LoginRequiredMixin, View):
     """List of vehicle types in database"""
     def get(self, request):
         vehicle_types = VehicleType.objects.all()
         return render(request, 'vehicle_types.html', {'vehicle_types': vehicle_types})
 
 
-class VehicleTypeDeleteView(DeleteView):
+class VehicleTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen vehicle type"""
     model = VehicleType
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('vehicle_types')
 
 
-class CreateVehicleView(View):
+class CreateVehicleView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new vehicle"""
     def get(self, request):
         vehicle_types = VehicleType.objects.all()
@@ -111,27 +112,27 @@ class CreateVehicleView(View):
         return redirect('vehicles')
 
 
-class VehiclesView(View):
+class VehiclesView(LoginRequiredMixin, View):
     """List of vehicles in database"""
     def get(self, request):
         vehicles = Vehicle.objects.all()
         return render(request, 'vehicles.html', {'vehicles': vehicles})
 
 
-class VehicleDetailView(DetailView):
+class VehicleDetailView(LoginRequiredMixin, DetailView):
     """Details of the vehicle"""
     model = Vehicle
     template_name = 'vehicle_detail_view.html'
 
 
-class VehicleDeleteView(DeleteView):
+class VehicleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen vehicle"""
     model = Vehicle
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('vehicles')
 
 
-class CreateMachineTypeView(CreateView):
+class CreateMachineTypeView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new machine type"""
     model = MachineType
     fields = '__all__'
@@ -139,21 +140,21 @@ class CreateMachineTypeView(CreateView):
     success_url = reverse_lazy('machine_types')
 
 
-class MachineTypesView(View):
+class MachineTypesView(LoginRequiredMixin, View):
     """List of machine types in database"""
     def get(self, request):
         machine_types = MachineType.objects.all()
         return render(request, 'machine_types.html', {'machine_types': machine_types})
 
 
-class MachineTypeDeleteView(DeleteView):
+class MachineTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen machine type"""
     model = MachineType
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('machine_types')
 
 
-class CreateMachineView(View):
+class CreateMachineView(LoginRequiredMixin, PermissionRequiredMixin, View):
     """Generates site with a form to create new machine"""
     def get(self, request):
         machine_types = MachineType.objects.all()
@@ -167,27 +168,27 @@ class CreateMachineView(View):
         return redirect('machines')
 
 
-class MachinesView(View):
+class MachinesView(LoginRequiredMixin, View):
     """List of machines in database"""
     def get(self, request):
         machines = Machine.objects.all()
         return render(request, 'machines.html', {'machines': machines})
 
 
-class MachineDetailView(DetailView):
+class MachineDetailView(LoginRequiredMixin, DetailView):
     """Details of the machine"""
     model = Machine
     template_name = 'machine_detail_view.html'
 
 
-class MachineDeleteView(DeleteView):
+class MachineDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen machine"""
     model = Machine
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('machines')
 
 
-class CreateCropView(CreateView):
+class CreateCropView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new crop"""
     model = Crop
     fields = '__all__'
@@ -195,21 +196,21 @@ class CreateCropView(CreateView):
     success_url = reverse_lazy('crops')
 
 
-class CropsView(View):
+class CropsView(LoginRequiredMixin, View):
     """List of crops in database"""
     def get(self, request):
         crops = Crop.objects.all()
         return render(request, 'crops.html', {'crops': crops})
 
 
-class CropDeleteView(DeleteView):
+class CropDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen crop"""
     model = Crop
     template_name = 'delete_confirm.html'
     success_url = reverse_lazy('crops')
 
 
-class CreateTaskView(CreateView):
+class CreateTaskView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """Generates site with a form to create new task"""
     model = Task
     fields = '__all__'
@@ -217,20 +218,20 @@ class CreateTaskView(CreateView):
     success_url = reverse_lazy('tasks')
 
 
-class TasksView(View):
+class TasksView(LoginRequiredMixin, View):
     """List of tasks in database"""
     def get(self, request):
         tasks = Task.objects.all()
         return render(request, 'tasks.html', {'tasks': tasks})
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     """Details of the task"""
     model = Task
     template_name = 'task_detail_view.html'
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Deletes chosen task"""
     model = Task
     template_name = 'delete_confirm.html'

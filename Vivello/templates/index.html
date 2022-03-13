@@ -165,6 +165,12 @@
               </nav>
             </div>
             <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+              {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}" class=" text-base font-medium text-white bg-white bg-opacity-20
+                  rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out">
+                Wyloguj
+              </a>
+              {% else %}
               <a
                 href="{% url 'login' %}"
                 class=" text-base font-medium text-white hover:opacity-70 py-3 px-7 loginBtn">
@@ -174,7 +180,9 @@
                   rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out">
                 Rejestracja
               </a>
+              {% endif %}
             </div>
+
           </div>
         </div>
       </div>
