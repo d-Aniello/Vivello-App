@@ -51,7 +51,7 @@ def test_farm_delete_view(client, user, farm):
 
 
 @pytest.mark.django_db
-def test_create_field_view(client, user, farm, crops):
+def test_create_field_view(client, user, farm):
     client.force_login(user)
     perm = Permission.objects.get(codename='add_field')
     user.user_permissions.add(perm)
@@ -59,8 +59,7 @@ def test_create_field_view(client, user, farm, crops):
         'name': 'Stawiguda',
         'area': 10,
         'location': 'Zadupie',
-        'farm': farm.id,
-        'crop': [x.id for x in crops]
+        'farm': farm.id
     }
     url = reverse('add_field')
     response = client.post(url, dct)

@@ -101,9 +101,9 @@ class Task(models.Model):
     description = models.CharField(max_length=255)
     date = models.DateField()
     user = models.ManyToManyField(User, blank=True)
-    vehicle = models.ManyToManyField(Vehicle)
-    machine = models.ManyToManyField(Machine)
-    field = models.ManyToManyField(Field)
+    vehicle = models.ManyToManyField(Vehicle, blank=True)
+    machine = models.ManyToManyField(Machine, blank=True)
+    field = models.ManyToManyField(Field, blank=True)
     crop = models.ManyToManyField(Crop, blank=True)
 
     def __str__(self):
