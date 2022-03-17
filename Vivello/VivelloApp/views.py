@@ -199,7 +199,7 @@ class CreateMachineView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
     def post(self, request):
         name = request.POST.get('name')
-        machine_type_id = request.POST.get('machine_type_id')
+        machine_type_id = request.POST.get('machine_type')
         machine_type = MachineType.objects.get(id=machine_type_id)
         Machine.objects.create(name=name, machine_type=machine_type)
         return redirect('machines')

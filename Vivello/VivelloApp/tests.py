@@ -1,6 +1,8 @@
 import pytest
 from django.contrib.auth.models import User, Permission
 from django.urls import reverse
+
+from VivelloApp.conftest import machine
 from VivelloApp.models import Farm, Field, VehicleType, Vehicle, MachineType, Machine, Crop, Task
 
 
@@ -205,7 +207,7 @@ def test_create_machine_view(client, user, machine_type):
     }
     url = reverse('add_machine')
     response = client.post(url, dct)
-    assert Machine.objects.get(**dct)
+    assert Machine.objects.get(name='Lemken', machine_type=machine_type)
 
 
 @pytest.mark.django_db
@@ -336,7 +338,7 @@ def test_registration_view(client):
         'pass_2': 'Dupa123456'
     }
     response = client.post(url, dct)
-    assert User.objects.get(**dct)
+    assert User.objects.get(username= 'Daniel')
 
 
 @pytest.mark.django_db
